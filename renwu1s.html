@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #red{
+            color: red;
+        }
+        #reds{
+            float: right;
+            margin-right:215px;
+            color: red;
+        }
+        #words{
+            float: left;
+        }
+        #bigs{
+            width: 450px;
+        }
+        #big{
+            width: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header id="big">
+        <h1>毕业生信息</h1>
+    </header>
+    <section id="big">
+        <fieldset id="bigs">
+            <legend id="red">
+                学生信息
+            </legend>
+            <form  method="get" action=""></form>
+               姓名：<input type="text" name="name" placeholder="请输入姓名"><div id="reds">*</div>
+               <br>
+               学号：<input type="number" name="number" placeholder="请输入学号" ><div id="reds">*</div>
+               <br>
+               手机：<input type="tel" name="tel" placeholder="请输入手机号" ><div id="reds">*</div>
+               <br>
+               邮箱：<input type="email" name="email" placeholder="请输入邮箱地址" ><div id="reds">*</div>
+            </form>
+        </fieldset>
+        <br>
+        <br>
+        <fieldset id="bigs">
+            <legend id="red">
+                录取情况
+            </legend>
+            <form  method="get" action="">
+               录取学校：<input type="search" name="shcool" autocomplete="on" list="names"> 
+               <datalist id="names">
+                  <option>河北师范大学</option>
+                  <option>清华大学</option>
+                  <option>北京航天航空大学</option>
+                  <option>华北电力大学</option>
+               </datalist>
+               <br>
+               入学成绩：<input type="number" name="chengji">  
+               <br>
+                入学时间：<input type="date" name="time">  
+            </form>
+        </fieldset>
+        <br>
+        <input type="submit" value="提交"/>
+    </section>
+    <script>
+    </script>
+</body>
+</html>
