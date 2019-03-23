@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #big{
+            width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            /* background-color: aqua; */
+            margin-top: 130px;
+            border:solid 8px #e6e6fa;
+        }
+        #search{
+            width: 200px;
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+        }
+        #annv{
+            width: 130px;
+            height: 35px;
+            color: gray;
+            margin-left: 5px;
+            margin-top: 20px;
+        }
+        #searched{
+            width: 330px;
+            height: 90px;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+        #s{
+            display: inline;
+            background-color:#dddddd;
+            margin-right: 10px;  
+            line-height: 45px;        
+        }
+        #error{
+            width: 20px;
+            height: 20px;
+            color: black;
+            background-color: #dddddd;
+            float: right;
+            margin-top: -33px;
+            text-align: center;
+            color: white;
+            margin-right: 10px;
+            border: solid 1px white;
+
+        }
+    </style>
+</head>
+<body>
+    <article id="big">
+        <form action="" method="GET">
+            <input type="text" name="search" placeholder="请输入想查找的商品" id="search">
+            <!-- <input type="submit" value="搜索" id="annv"> -->
+            <button id="annv" onclick="aa();return false;">搜索</button>
+        </form>
+        <p style="margin-left:10px;">最近搜索</p>
+        <div id="searched">
+        </div>
+        <button id="error" onclick="shanchu();return false;">X</button>
+    </article>   
+</body>
+<script>
+    if(!window.localStorage){
+        alert("浏览器不支持localStorage");
+    }
+    else{
+        var searched=document.getElementById("searched");
+        var sc='';
+        for(var i=0;i<localStorage.length;i++){
+            sc="<div id='s'>"+localStorage.getItem(localStorage.key(i))+"</div>"+sc;
+        }
+        searched.innerHTML=sc;
+        function aa(){
+            var content=document.getElementById("search").value;
+            if(localStorage.length==0){
+                var time=Date.parse(new Date());
+                localStorage.setItem(time,content);
+                searched.innerHTML="<div id='s'>"+localStorage.getItem(time)+"</div>"+ searched.innerHTML;
+            }
+            if(localStorage.length!=0){
+                for(var i=0;i<=localStorage.length&&content!=localStorage.getItem(localStorage.key(i));i++){
+                if(i==localStorage.length-1){
+                   var time=Date.parse(new Date());
+                   localStorage.setItem(time,content);
+                   searched.innerHTML="<div id='s'>"+localStorage.getItem(time)+"</div>"+ searched.innerHTML;
+                }
+            }
+            }
+            // var time=Date.parse(new Date());
+            // localStorage.setItem(time,content);
+            // searched.innerHTML="<div id='s'>"+localStorage.getItem(time)+"</div>"+ searched.innerHTML;
+         }
+         function shanchu(){
+             localStorage.clear();
+             searched.innerHTML=null;
+         }
+    }
+</script>
+</html>
