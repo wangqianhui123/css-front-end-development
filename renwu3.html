@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            font-size: 50px;
+            color: red;
+            position: absolute;
+            line-height: 150px;
+            margin-left: 5%;
+            text-align: center;
+        }
+        #canvas1{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">一等奖</div>
+    <canvas id="canvas1" width="300" height="150"></canvas>
+</body>
+<script>
+    var canvas=document.getElementById("canvas1");
+    var div1=document.getElementById("div1");
+    var context = canvas.getContext("2d");
+
+    context.rect(0,0,300,150);
+    context.fillStyle="#ccc";
+    
+    canvas.onmousedown=function(){
+        canvas.onmousemove=function(e){
+            context.clearRect(e.offsetX,e.offsetY,18,18);
+            var imgData=context.getImageData(0,0,300,150);
+            var data=imgData.data;
+            var length=data.length;
+            var a=0;
+            for(var j=0;j<length;j+=1){
+               var b=data[j];
+               if(b<10){
+                  a++;
+                }
+             }
+            var per=a/length;
+            if(per>0.85){
+               context.clearRect(0,0,canvas.width,canvas.height);
+                    }
+        }
+    }
+
+    window.onload=function(){
+        var i=Math.random()*10;
+        console.log(i);
+        if(i>=0&&i<1){
+            div1.innerHTML="一等奖";
+        }
+        if(i>=1&&i<3){
+            div1.innerHTML="二等奖";
+        }
+        if(i>=3&&i<6){
+            div1.innerHTML="三等奖";
+        }
+        if(i>=6&&i<10){
+            div1.innerHTML="参与奖";
+        }
+     }
+    context.fill();
+    context.stroke();
+</script>
+</html>
